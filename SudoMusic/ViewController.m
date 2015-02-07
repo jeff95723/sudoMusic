@@ -13,6 +13,8 @@
 @property MPMediaPickerController *picker;
 @property NSData* selectedSong;
 @property NSURL* selectedURL;
+@property NSURL* toURL;
+@property TSLibraryImport *importHelper;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UILabel *songname;
 @property (weak, nonatomic) IBOutlet UILabel *artistname;
@@ -39,6 +41,10 @@
         self.picker.delegate = self;
     }
     
+    if (!self.importHelper) {
+        self.importHelper = [[TSLibraryImport alloc] init];
+    }
+    
     
     
     [self presentViewController:self.picker animated:YES completion:nil];
@@ -47,19 +53,40 @@
 - (void)saveButtonPressed {
     
     NSLog(@"Saving start.");
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSURL *filePath = self.selectedURL;
-    AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.37:8000/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileURL:[NSURL URLWithString:@"http://peterxia.com/fuck451.pdf"] name:@"file" error:nil];
-//        [formData appendPartWithFileURL:filePath name:@"file" fileName:@"haha.m4a" mimeType:@"audio/x-m4a" error:nil];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Success: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [op start];
+    NSURL *yourURL = [NSURL URLWithString:@"http://10.0.0.37:8000/"];
+    NSMutableURLRequest *yourRequest = [NSMutableURLRequest requestWithURL:yourURL
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
+    //Set request to post
+    [yourRequest setHTTPMethod:@"POST"];
+    
+    //Set content type
+    [yourRequest setValue:@"audio/x-m4a" forHTTPHeaderField:@"Content-Type"];
+    [yourRequest setValue:@"file" forHTTPHeaderField:@"name"];
+    
+    // set data
+    [yourRequest setHTTPBody:[NSData dataWithContentsOfURL:self.toURL]];
+    
+    
+    // create connection and set delegate if needed
+    NSURLConnection *yourConnection = [[NSURLConnection alloc] initWithRequest:yourRequest
+                                                                      delegate:self
+                                                              startImmediately:YES];
+    NSLog(@"Saving finished.");
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSURL *filePath = self.toURL;
+//    AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.37:8000/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileURL:self.toURL name:@"file" error:nil];
+////        [formData appendPartWithFileURL:filePath name:@"file" fileName:@"haha.m4a" mimeType:@"audio/x-m4a" error:nil];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Success: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+//    op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    [op start];
 }
+
 
 
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
@@ -76,6 +103,8 @@
     self.selectedURL = songAsset.URL;
     self.saveButton.enabled = YES;
     self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
+    NSString *fileExt = [TSLibraryImport extensionForAssetURL:self.selectedURL];
+    NSLog(@"URL: %@", fileExt);
     
     
     
@@ -83,11 +112,15 @@
     self.songname.text = songTitle;
     self.artistname.text = artist;
     
-//    NSURL *toURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@-%@"]]
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    self.toURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@-%@.%@", documentsDirectory,songTitle, artist, fileExt]];
     
-//    [self.importHelper importAsset:<#(NSURL *)#> toURL:<#(NSURL *)#> completionBlock:^(TSLibraryImport *import) {
-//        <#code#>
-//    }];
+    [self.importHelper importAsset:self.selectedURL toURL:self.toURL completionBlock:^(TSLibraryImport *import) {
+        NSData* data = [NSData dataWithContentsOfURL:self.toURL];
+        NSLog(@"%@", self.toURL.absoluteString);
+        NSLog(@"I got a file with length: %lu", (unsigned long)data.length);
+    }];
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
     NSLog(@"NSURL: %@", songAsset.URL);
