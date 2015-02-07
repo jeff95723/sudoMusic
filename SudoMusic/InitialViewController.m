@@ -49,10 +49,16 @@
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
 {
+    /*
     [self dismissViewControllerAnimated:YES completion:^{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"QRCodeReader" message:result delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];
+    */
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self performSegueWithIdentifier:@"AfterScan" sender:self];
 }
 
 - (void)readerDidCancel:(QRCodeReaderViewController *)reader
