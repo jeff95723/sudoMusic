@@ -12,6 +12,7 @@
 @interface ViewController ()
 @property MPMediaPickerController *picker;
 @property NSData* selectedSong;
+@property NSURL* selectedURL;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UILabel *songname;
 @property (weak, nonatomic) IBOutlet UILabel *artistname;
@@ -39,30 +40,23 @@
     }
     
     [self presentViewController:self.picker animated:YES completion:nil];
-    
-    NSLog(@"fuck you.");
 }
 
 - (void)saveButtonPressed {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://peterxia.com/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:self.selectedSong name:@"uri_file"
-                                fileName:[NSString stringWithFormat:@"%@-%@.aac",self.artistname.text, self.songname.text]
-                                mimeType:@"audio/x-m4a"];
-    } error:nil];
     
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSProgress *progress = nil;
-    
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"Error: %@", error);
-        } else {
-            NSLog(@"%@ %@", response, responseObject);
-        }
+    NSLog(@"Saving start.");
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSURL *filePath = self.selectedURL;
+    AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.37:8000/" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:[NSURL URLWithString:@"http://peterxia.com/fuck451.pdf"] name:@"file" error:nil];
+//        [formData appendPartWithFileURL:filePath name:@"file" fileName:@"haha.m4a" mimeType:@"audio/x-m4a" error:nil];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
     }];
-    
-    [uploadTask resume];
-    NSLog(@"Saving finished.");
+    op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [op start];
 }
 
 
@@ -78,6 +72,7 @@
     NSURL *assetURL = [theChosenSong valueForProperty:MPMediaItemPropertyAssetURL];
     AVURLAsset  *songAsset  = [AVURLAsset URLAssetWithURL:assetURL options:nil];
     self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
+    self.selectedURL = songAsset.URL;
     self.saveButton.enabled = YES;
     
     //Now that you have this, either just write the asset (or part of) to disk, access the asset directly, send the written asset to another device etc
@@ -86,6 +81,7 @@
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
     NSLog(@"NSURL: %@", songAsset.URL);
+    NSLog(@"Selected data length: %lu", (unsigned long)_selectedSong.length);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
