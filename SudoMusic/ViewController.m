@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
     self.saveButton.enabled = NO;
     self.songname.text = @"None.";
     self.artistname.text = @"None.";
