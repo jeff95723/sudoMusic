@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     // Do any additional setup after loading the view.
 }
 
@@ -34,6 +36,7 @@
         reader                        = [QRCodeReaderViewController new];
         reader.modalPresentationStyle = UIModalPresentationFormSheet;
     });
+    
     reader.delegate = self;
     
     [reader setCompletionWithBlock:^(NSString *resultAsString) {
