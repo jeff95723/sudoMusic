@@ -56,8 +56,8 @@
 		9E98197B1A85CBD900470A53 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderView.m; path = QRCodeReaderViewController/QRCodeReaderView.m; sourceTree = "<group>"; };
 		9E98197C1A85CBD900470A53 /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderViewController.h; path = QRCodeReaderViewController/QRCodeReaderViewController.h; sourceTree = "<group>"; };
 		9E98197D1A85CBD900470A53 /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderViewController.m; path = QRCodeReaderViewController/QRCodeReaderViewController.m; sourceTree = "<group>"; };
-		9EE11E301A85D9D30081031F /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitialViewController.h; path = SudoMusic/InitialViewController.h; sourceTree = "<group>"; };
-		9EE11E311A85D9D30081031F /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitialViewController.m; path = SudoMusic/InitialViewController.m; sourceTree = "<group>"; };
+		9EE11E301A85D9D30081031F /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		9EE11E311A85D9D30081031F /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		E0385A80C7D4D9300909F5F8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,6 @@
 		30C7EEDE1A85C1C1002C1417 = {
 			isa = PBXGroup;
 			children = (
-				9EE11E2F1A85D9A80081031F /* InitialViewController */,
 				9E9819761A85CB4700470A53 /* QRCodeReaderViewController */,
 				30C7EF101A85C1F1002C1417 /* AVFoundation.framework */,
 				30C7EEE91A85C1C1002C1417 /* SudoMusic */,
@@ -107,6 +106,8 @@
 		30C7EEE91A85C1C1002C1417 /* SudoMusic */ = {
 			isa = PBXGroup;
 			children = (
+				9EE11E301A85D9D30081031F /* InitialViewController.h */,
+				9EE11E311A85D9D30081031F /* InitialViewController.m */,
 				30C7EEEE1A85C1C1002C1417 /* AppDelegate.h */,
 				30C7EEEF1A85C1C1002C1417 /* AppDelegate.m */,
 				30C7EEF11A85C1C1002C1417 /* ViewController.h */,
@@ -174,15 +175,6 @@
 				9E98197D1A85CBD900470A53 /* QRCodeReaderViewController.m */,
 			);
 			name = QRCodeReaderViewController;
-			sourceTree = "<group>";
-		};
-		9EE11E2F1A85D9A80081031F /* InitialViewController */ = {
-			isa = PBXGroup;
-			children = (
-				9EE11E301A85D9D30081031F /* InitialViewController.h */,
-				9EE11E311A85D9D30081031F /* InitialViewController.m */,
-			);
-			name = InitialViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
