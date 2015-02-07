@@ -14,6 +14,7 @@
 		30C7EEF81A85C1C1002C1417 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C7EEF71A85C1C1002C1417 /* Images.xcassets */; };
 		30C7EEFB1A85C1C1002C1417 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C7EEF91A85C1C1002C1417 /* LaunchScreen.xib */; };
 		30C7EF071A85C1C1002C1417 /* SudoMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EF061A85C1C1002C1417 /* SudoMusicTests.m */; };
+		30C7EF111A85C1F1002C1417 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C7EF101A85C1F1002C1417 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		30C7EF001A85C1C1002C1417 /* SudoMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudoMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C7EF051A85C1C1002C1417 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C7EF061A85C1C1002C1417 /* SudoMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SudoMusicTests.m; sourceTree = "<group>"; };
+		30C7EF101A85C1F1002C1417 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C7EF111A85C1F1002C1417 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		30C7EEDE1A85C1C1002C1417 = {
 			isa = PBXGroup;
 			children = (
+				30C7EF101A85C1F1002C1417 /* AVFoundation.framework */,
 				30C7EEE91A85C1C1002C1417 /* SudoMusic */,
 				30C7EF031A85C1C1002C1417 /* SudoMusicTests */,
 				30C7EEE81A85C1C1002C1417 /* Products */,
