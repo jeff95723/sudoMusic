@@ -18,6 +18,7 @@
 @property NSMutableArray *artists;
 @property NSMutableArray *upvotes;
 @property NSMutableArray *downvotes;
+@property NSString *server;
 
 @end
 
@@ -74,6 +75,7 @@
             if (_firstLoad) {
                 NSLog(@"JSON: %@", responseObject);
                 
+                _server = result;
                 
                 [self dismissViewControllerAnimated:YES completion:^{
                     [self performSegueWithIdentifier:@"AfterScan" sender:responseObject];
@@ -135,6 +137,7 @@
         sqtvc.upvotes = [upvotes copy];
         sqtvc.downvotes = [downvotes copy];
         sqtvc.songIDs = [songIDs copy];
+        sqtvc.server = _server;
     }
 //     Get the new view controller using [segue destinationViewController].
 //     Pass the selected object to the new view controller.

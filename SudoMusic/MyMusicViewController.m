@@ -47,6 +47,8 @@
     UILabel *artistLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *upvoteLabel = (UILabel *)[cell viewWithTag:4];
     UILabel *downvoteLabel = (UILabel *)[cell viewWithTag:5];
+    upvoteLabel.alpha = 0;
+    downvoteLabel.alpha = 0;
     
     if (self.songs && self.artists && self.upvotes && self.downvotes) {
         songLabel.text = [self.songs objectAtIndex:indexPath.row];

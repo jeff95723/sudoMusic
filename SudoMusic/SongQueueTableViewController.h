@@ -22,6 +22,7 @@
 @property NSArray *upvotes;
 @property NSArray *downvotes;
 @property NSArray *songIDs;
+@property NSString *server;
 @property NSInteger nowPlayingIndex;
 
 @end

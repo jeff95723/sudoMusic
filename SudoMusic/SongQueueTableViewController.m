@@ -35,6 +35,7 @@
     [self.navigationItem setHidesBackButton:YES];
     
     self.saveButton.enabled = NO;
+    self.saveButton.alpha = 0;
 //    self.songname.text = @"None.";
 //    self.artistname.text = @"None.";
 //    [self.saveButton addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -48,6 +49,51 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:_server parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSMutableArray *TMPsongs = [[NSMutableArray alloc] init];
+        NSMutableArray *TMPartists = [[NSMutableArray alloc] init];
+        NSMutableArray *TMPupvotes = [[NSMutableArray alloc] init];
+        NSMutableArray *TMPdownvotes = [[NSMutableArray alloc] init];
+        NSMutableArray *TMPsongIDs = [[NSMutableArray alloc] init];
+        
+        NSInteger i = 0;
+        for (NSMutableDictionary *dict in (NSArray*) responseObject) {
+            NSMutableDictionary *fds = [dict valueForKey:@"fields"];
+            NSString* sid = [dict valueForKey:@"pk"];
+            NSString* up = [fds valueForKey:@"upvotes"];
+            NSString* dw = [fds valueForKey:@"downvotes"];
+            NSString* nm = [fds valueForKey:@"name"];
+            NSString* at = [fds valueForKey:@"information"];
+            
+            [TMPsongs addObject:nm];
+            [TMPartists addObject:at];
+            [TMPupvotes addObject:up];
+            [TMPdownvotes addObject:dw];
+            [TMPsongIDs addObject:sid];
+            
+            BOOL playing = [fds valueForKey:@"playing"];
+            if (playing) {
+                _nowPlayingIndex = i;
+            }
+            i++;
+        }
+        
+        self.songs = [TMPsongs copy];
+        self.artists = [TMPartists copy];
+        self.upvotes = [TMPupvotes copy];
+        self.downvotes = [TMPdownvotes copy];
+        self.songIDs = [TMPsongIDs copy];
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self.tableView reloadData];
+        
+    }];
 }
 
 - (IBAction)addMusicPressed:(id)sender {
@@ -73,7 +119,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     NSDictionary *parameters = @{@"name": self.selectedSongName, @"information": self.selectedSongArtist};
-    AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.36:8000/users/sample/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.6:8000/users/sample/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:[NSData dataWithContentsOfURL:self.toURL] name:@"song" fileName:[NSString stringWithFormat:@"%@-%@.%@",_selectedSongName,_selectedSongArtist,_selectedSongFileExt] mimeType:@"audio/x-m4a"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
@@ -176,6 +222,13 @@
     UILabel *artistLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *upvoteLabel = (UILabel *)[cell viewWithTag:3];
     UILabel *downvoteLabel = (UILabel *)[cell viewWithTag:4];
+    upvoteLabel.alpha = 0;
+    downvoteLabel.alpha = 0;
+    
+    if (indexPath.row == _nowPlayingIndex) {
+        upvoteLabel.alpha = 1;
+        upvoteLabel.text = @"►";
+    }
 //    UIButton *upvote = (UIButton *)[cell viewWithTag:5];
 //    UIButton *downvote = (UIButton *)[cell viewWithTag:6];
     
