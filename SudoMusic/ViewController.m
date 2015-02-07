@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 @property MPMediaPickerController *picker;
+@property NSData* selectedSong;
 
 @end
 
@@ -43,11 +44,19 @@
     //then just get the assetURL
     NSURL *assetURL = [theChosenSong valueForProperty:MPMediaItemPropertyAssetURL];
     AVURLAsset  *songAsset  = [AVURLAsset URLAssetWithURL:assetURL options:nil];
+    self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
     
     //Now that you have this, either just write the asset (or part of) to disk, access the asset directly, send the written asset to another device etc
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
+    NSLog(@"NSURL: %@", songAsset.URL);
+    [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+- (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
