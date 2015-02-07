@@ -97,7 +97,8 @@
 		@throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Invalid iPod Library URL: %@", assetURL] userInfo:nil];
 
 	if ([[NSFileManager defaultManager] fileExistsAtPath:[destURL path]])
-		 @throw [NSException exceptionWithName:TSFileExistsError reason:[NSString stringWithFormat:@"File already exists at url: %@", destURL] userInfo:nil];
+        [[NSFileManager defaultManager] removeItemAtURL:destURL error:nil];
+//		 @throw [NSException exceptionWithName:TSFileExistsError reason:[NSString stringWithFormat:@"File already exists at url: %@", destURL] userInfo:nil];
 	
 	NSDictionary * options = [[NSDictionary alloc] init];
 	AVURLAsset* asset = [AVURLAsset URLAssetWithURL:assetURL options:options];	

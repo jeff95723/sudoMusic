@@ -10,6 +10,7 @@
 		1626E3291A8618F7002313F0 /* SongQueueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1626E3281A8618F7002313F0 /* SongQueueInfo.m */; };
 		30103E441A8605C3001078C9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30103E431A8605C3001078C9 /* CoreMedia.framework */; };
 		30103E471A86083D001078C9 /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 30103E461A86083D001078C9 /* TSLibraryImport.m */; };
+		30103E521A864A5F001078C9 /* MyMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30103E511A864A5F001078C9 /* MyMusicViewController.m */; };
 		30C7EEED1A85C1C1002C1417 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EEEC1A85C1C1002C1417 /* main.m */; };
 		30C7EEF01A85C1C1002C1417 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EEEF1A85C1C1002C1417 /* AppDelegate.m */; };
 		30C7EEF31A85C1C1002C1417 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EEF21A85C1C1002C1417 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 		30103E431A8605C3001078C9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		30103E451A86083D001078C9 /* TSLibraryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLibraryImport.h; sourceTree = "<group>"; };
 		30103E461A86083D001078C9 /* TSLibraryImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLibraryImport.m; sourceTree = "<group>"; };
+		30103E501A864A5F001078C9 /* MyMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMusicViewController.h; sourceTree = "<group>"; };
+		30103E511A864A5F001078C9 /* MyMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMusicViewController.m; sourceTree = "<group>"; };
 		30C7EEE71A85C1C1002C1417 /* SudoMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SudoMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30C7EEEB1A85C1C1002C1417 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C7EEEC1A85C1C1002C1417 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				30103E461A86083D001078C9 /* TSLibraryImport.m */,
 				9EE11E301A85D9D30081031F /* InitialViewController.h */,
 				9EE11E311A85D9D30081031F /* InitialViewController.m */,
+				30103E501A864A5F001078C9 /* MyMusicViewController.h */,
+				30103E511A864A5F001078C9 /* MyMusicViewController.m */,
 				9E136BAD1A8619CE00F7BD0B /* SongQueueTableViewController.h */,
 				9E136BAE1A8619CE00F7BD0B /* SongQueueTableViewController.m */,
 				30C7EEEE1A85C1C1002C1417 /* AppDelegate.h */,
@@ -331,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30103E521A864A5F001078C9 /* MyMusicViewController.m in Sources */,
 				30C7EEF31A85C1C1002C1417 /* ViewController.m in Sources */,
 				9E9819801A85CBD900470A53 /* QRCodeReaderViewController.m in Sources */,
 				30C7EEF01A85C1C1002C1417 /* AppDelegate.m in Sources */,

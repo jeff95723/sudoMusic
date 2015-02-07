@@ -14,6 +14,10 @@
     
 }
 @property BOOL firstLoad;
+@property NSMutableArray *songs;
+@property NSMutableArray *artists;
+@property NSMutableArray *upvotes;
+@property NSMutableArray *downvotes;
 
 @end
 
@@ -24,6 +28,10 @@
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sudoPlay bg_ip5size_text.png"]];
     // Do any additional setup after loading the view.
+    _songs = [[NSMutableArray alloc] init];
+    _artists = [[NSMutableArray alloc] init];
+    _upvotes = [[NSMutableArray alloc] init];
+    _downvotes = [[NSMutableArray alloc] init];
     _firstLoad = YES;
 }
 

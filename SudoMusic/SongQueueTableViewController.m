@@ -7,6 +7,7 @@
 //
 
 #import "SongQueueTableViewController.h"
+#import "MyMusicViewController.h"
 
 @interface SongQueueTableViewController () <MPMediaPickerControllerDelegate>
 
@@ -18,6 +19,10 @@
 @property NSString *selectedSongName;
 @property NSString *selectedSongArtist;
 @property NSString *selectedSongFileExt;
+@property NSMutableArray *MYsongs;
+@property NSMutableArray *MYartists;
+@property NSMutableArray *MYupvotes;
+@property NSMutableArray *MYdownvotes;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
@@ -32,7 +37,11 @@
     self.saveButton.enabled = NO;
 //    self.songname.text = @"None.";
 //    self.artistname.text = @"None.";
-    [self.saveButton addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//    [self.saveButton addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    _MYsongs = [[NSMutableArray alloc] init];
+    _MYartists = [[NSMutableArray alloc] init];
+    _MYupvotes = [[NSMutableArray alloc] init];
+    _MYdownvotes = [[NSMutableArray alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,6 +79,7 @@
         NSLog(@"Success: %@", responseObject);
         NSFileManager *fileManager = [NSFileManager defaultManager];
         [fileManager removeItemAtURL:self.toURL error:nil];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -77,6 +87,11 @@
     }];
     op.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [op start];
+    [_MYsongs addObject:_selectedSongName];
+    NSLog(@"mysongs in save: %@", _MYsongs);
+    [_MYartists addObject:_selectedSongArtist];
+    [_MYupvotes addObject:@"0"];
+    [_MYdownvotes addObject:@"0"];
 }
 
 
@@ -110,13 +125,15 @@
     self.toURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@-%@.%@", documentsDirectory,songTitle, artist, fileExt]];
     
     [self.importHelper importAsset:self.selectedURL toURL:self.toURL completionBlock:^(TSLibraryImport *import) {
-        NSData* data = [NSData dataWithContentsOfURL:self.toURL];
     }];
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
     NSLog(@"NSURL: %@", songAsset.URL);
     NSLog(@"Selected data length: %lu", (unsigned long)_selectedSong.length);
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self saveButtonPressed];
+        NSLog(@"mysongs in save: %@", _MYsongs);
+    }];
 }
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
@@ -247,14 +264,19 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier  isEqual: @"goToMyMusic"]) {
+        MyMusicViewController *mmvc = [segue destinationViewController];
+        mmvc.songs = [_MYsongs copy];
+        mmvc.artists = [_MYartists copy];
+        mmvc.upvotes = [_MYupvotes copy];
+        mmvc.downvotes = [_MYdownvotes copy];
+    }
 }
-*/
 
 @end
