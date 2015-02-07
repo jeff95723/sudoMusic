@@ -13,7 +13,6 @@
 @property MPMediaPickerController *picker;
 @property NSData* selectedSong;
 @property NSURL* selectedURL;
-@property TSLibraryImport *importHelper;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UILabel *songname;
 @property (weak, nonatomic) IBOutlet UILabel *artistname;
@@ -40,9 +39,6 @@
         self.picker.delegate = self;
     }
     
-    if (!self.importHelper) {
-        self.importHelper = [[TSLibraryImport alloc] init];
-    }
     
     
     [self presentViewController:self.picker animated:YES completion:nil];
@@ -78,10 +74,9 @@
     NSURL *assetURL = [theChosenSong valueForProperty:MPMediaItemPropertyAssetURL];
     AVURLAsset  *songAsset  = [AVURLAsset URLAssetWithURL:assetURL options:nil];
     self.selectedURL = songAsset.URL;
-    NSString *fileExt = [TSLibraryImport extensionForAssetURL:self.selectedURL];
-    NSLog(@"file ext: %@", fileExt);
     self.saveButton.enabled = YES;
     self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
+    
     
     
     //Now that you have this, either just write the asset (or part of) to disk, access the asset directly, send the written asset to another device etc
