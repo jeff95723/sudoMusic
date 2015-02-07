@@ -9,7 +9,9 @@
 #import "InitialViewController.h"
 #import "QRCodeReaderViewController.h"
 
-@interface InitialViewController ()
+@interface InitialViewController () <QRCodeReaderDelegate> {
+    
+}
 
 @end
 

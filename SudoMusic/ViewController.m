@@ -75,7 +75,6 @@
     MPMediaItem *theChosenSong = [[mediaItemCollection items]objectAtIndex:0];
     NSString *songTitle = [theChosenSong valueForProperty:MPMediaItemPropertyTitle];
     NSString *artist = [theChosenSong valueForProperty:MPMediaItemPropertyArtist];
-    NSString *album = [theChosenSong valueForProperty:MPMediaItemPropertyAlbumTitle];
     
     
     //then just get the assetURL
