@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1626E3291A8618F7002313F0 /* SongQueueInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1626E3281A8618F7002313F0 /* SongQueueInfo.m */; };
 		30103E441A8605C3001078C9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30103E431A8605C3001078C9 /* CoreMedia.framework */; };
 		30103E471A86083D001078C9 /* TSLibraryImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 30103E461A86083D001078C9 /* TSLibraryImport.m */; };
 		30C7EEED1A85C1C1002C1417 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EEEC1A85C1C1002C1417 /* main.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1626E3271A8618F7002313F0 /* SongQueueInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongQueueInfo.h; sourceTree = "<group>"; };
+		1626E3281A8618F7002313F0 /* SongQueueInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongQueueInfo.m; sourceTree = "<group>"; };
 		1D16056CFCD5D6016BAA94CD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		30103E431A8605C3001078C9 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		30103E451A86083D001078C9 /* TSLibraryImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLibraryImport.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				30C7EEF71A85C1C1002C1417 /* Images.xcassets */,
 				30C7EEF91A85C1C1002C1417 /* LaunchScreen.xib */,
 				30C7EEEA1A85C1C1002C1417 /* Supporting Files */,
+				1626E3271A8618F7002313F0 /* SongQueueInfo.h */,
+				1626E3281A8618F7002313F0 /* SongQueueInfo.m */,
 			);
 			path = SudoMusic;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				9E98197F1A85CBD900470A53 /* QRCodeReaderView.m in Sources */,
 				30C7EEED1A85C1C1002C1417 /* main.m in Sources */,
 				9EE11E321A85D9D30081031F /* InitialViewController.m in Sources */,
+				1626E3291A8618F7002313F0 /* SongQueueInfo.m in Sources */,
 				9E98197E1A85CBD900470A53 /* QRCameraSwitchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
