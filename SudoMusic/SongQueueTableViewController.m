@@ -17,6 +17,7 @@
 @property TSLibraryImport *importHelper;
 @property NSString *selectedSongName;
 @property NSString *selectedSongArtist;
+@property NSString *selectedSongFileExt;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
@@ -64,7 +65,7 @@
     
     NSDictionary *parameters = @{@"name": self.selectedSongName, @"information": self.selectedSongArtist};
     AFHTTPRequestOperation *op = [manager POST:@"http://10.0.0.36:8000/users/sample/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:[NSData dataWithContentsOfURL:self.toURL] name:@"song" fileName:@"yourass.m4a" mimeType:@"audio/x-m4a"];
+        [formData appendPartWithFileData:[NSData dataWithContentsOfURL:self.toURL] name:@"song" fileName:[NSString stringWithFormat:@"%@-%@.%@",_selectedSongName,_selectedSongArtist,_selectedSongFileExt] mimeType:@"audio/x-m4a"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -95,6 +96,7 @@
     self.saveButton.enabled = YES;
     self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
     NSString *fileExt = [TSLibraryImport extensionForAssetURL:self.selectedURL];
+    self.selectedSongFileExt= fileExt;
     NSLog(@"URL: %@", fileExt);
     self.selectedSongArtist = songTitle;
     self.selectedSongName = artist;
