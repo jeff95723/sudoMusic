@@ -12,6 +12,9 @@
 @interface ViewController ()
 @property MPMediaPickerController *picker;
 @property NSData* selectedSong;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UILabel *songname;
+@property (weak, nonatomic) IBOutlet UILabel *artistname;
 
 @end
 
@@ -19,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.saveButton.enabled = NO;
+    self.songname.text = @"None.";
+    self.artistname.text = @"None.";
 }
 
 - (IBAction)addMusicPressed:(id)sender {
@@ -35,6 +41,7 @@
     NSLog(@"fuck you.");
 }
 
+
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
 {
     MPMediaItem *theChosenSong = [[mediaItemCollection items]objectAtIndex:0];
@@ -45,8 +52,11 @@
     NSURL *assetURL = [theChosenSong valueForProperty:MPMediaItemPropertyAssetURL];
     AVURLAsset  *songAsset  = [AVURLAsset URLAssetWithURL:assetURL options:nil];
     self.selectedSong = [NSData dataWithContentsOfURL:songAsset.URL];
+    self.saveButton.enabled = YES;
     
     //Now that you have this, either just write the asset (or part of) to disk, access the asset directly, send the written asset to another device etc
+    self.songname.text = songTitle;
+    self.artistname.text = artist;
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
     NSLog(@"NSURL: %@", songAsset.URL);
