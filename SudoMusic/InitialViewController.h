@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QRCodeReaderViewController.h"
 
 @interface InitialViewController : UIViewController
+
+- (IBAction)scanAction:(id)sender;
 
 @end
