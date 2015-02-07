@@ -45,7 +45,7 @@
 
 - (void)saveButtonPressed {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://peterxia.com/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:self.selectedSong name:@"file"
+        [formData appendPartWithFileData:self.selectedSong name:@"uri_file"
                                 fileName:[NSString stringWithFormat:@"%@-%@.aac",self.artistname.text, self.songname.text]
                                 mimeType:@"audio/x-m4a"];
     } error:nil];
@@ -71,6 +71,8 @@
     MPMediaItem *theChosenSong = [[mediaItemCollection items]objectAtIndex:0];
     NSString *songTitle = [theChosenSong valueForProperty:MPMediaItemPropertyTitle];
     NSString *artist = [theChosenSong valueForProperty:MPMediaItemPropertyArtist];
+    NSString *album = [theChosenSong valueForProperty:MPMediaItemPropertyAlbumTitle];
+    
     
     //then just get the assetURL
     NSURL *assetURL = [theChosenSong valueForProperty:MPMediaItemPropertyAssetURL];
