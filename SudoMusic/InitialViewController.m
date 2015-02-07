@@ -60,6 +60,9 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+    
+    
+    
     [self performSegueWithIdentifier:@"AfterScan" sender:self];
 }
 
