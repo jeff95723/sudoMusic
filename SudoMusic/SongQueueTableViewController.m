@@ -8,7 +8,7 @@
 
 #import "SongQueueTableViewController.h"
 
-@interface SongQueueTableViewController ()
+@interface SongQueueTableViewController () <MPMediaPickerControllerDelegate>
 
 @property MPMediaPickerController *picker;
 @property NSData* selectedSong;
@@ -111,8 +111,6 @@
     
     [self.importHelper importAsset:self.selectedURL toURL:self.toURL completionBlock:^(TSLibraryImport *import) {
         NSData* data = [NSData dataWithContentsOfURL:self.toURL];
-        NSLog(@"%@", self.toURL.absoluteString);
-        NSLog(@"I got a file with length: %lu", (unsigned long)data.length);
     }];
     NSLog(@"Songtitle: %@", songTitle);
     NSLog(@"Artist: %@", artist);
@@ -144,6 +142,7 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (self.songs) {
+        NSLog(@"songs count: %lu", (unsigned long)self.songs.count);
         return self.songs.count;
     } else {
         return 10;
@@ -158,18 +157,61 @@
     
     UILabel *songLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *artistLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *upvoteLabel = (UILabel *)[cell viewWithTag:3];
+    UILabel *downvoteLabel = (UILabel *)[cell viewWithTag:4];
+//    UIButton *upvote = (UIButton *)[cell viewWithTag:5];
+//    UIButton *downvote = (UIButton *)[cell viewWithTag:6];
     
-    if (self.songs && self.artists && self.upvotes && self.downvotes) {
-        songLabel.text = [self.songs objectAtIndex:indexPath];
-        artistLabel.text = [self.artists objectAtIndex:indexPath];
+    if (self.songs && self.artists && self.upvotes && self.downvotes && self.songIDs) {
+        songLabel.text = [self.songs objectAtIndex:indexPath.row];
+        artistLabel.text = [self.artists objectAtIndex:indexPath.row];
+//        upvoteLabel.text = [self.upvotes objectAtIndex:indexPath.row];
+//        downvoteLabel.text = [self.downvotes objectAtIndex:indexPath.row];
+//        NSString *sid = [self.songIDs objectAtIndex:indexPath.row];
+//        [upvote addTarget:self action:@selector(upvotePressedWithSID:ChangeLabel:Sender:) forControlEvents:UIControlEventTouchUpInside];
+//        [downvote addTarget:self action:@selector(downvotePressedWithSID:ChangeLabel:Sender:) forControlEvents:UIControlEventTouchUpInside];
     } else {
         songLabel.text = @"Song name: ";
         artistLabel.text = @"Artist name: ";
     }
-    
+//
     return cell;
 }
 
+//-(void) upvotePressedWithSID: (NSString*) sid ChangeLabel: (UILabel*) label Sender: (UIButton *) sender {
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSDictionary *parameters = @{@"sid": sid};
+//    [manager POST:@"http://10.0.0.36:8000/users/sample/upvote" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        NSInteger pastUP = [label.text integerValue];
+//        label.text = [NSString stringWithFormat:@"%ld", (pastUP-1)];
+//        sender.enabled = NO;
+//    }];
+//    
+//    NSInteger pastUP = [label.text integerValue];
+//    label.text = [NSString stringWithFormat:@"%ld", (pastUP+1)];
+//    sender.enabled = NO;
+//}
+//
+//
+//-(void) downvotePressedWithSID: (NSString*) sid ChangeLabel: (UILabel*) label Sender: (UIButton *) sender {
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    NSDictionary *parameters = @{@"sid": sid};
+//    [manager POST:@"http://10.0.0.36:8000/users/sample/downvote" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"JSON: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        NSInteger pastDOWN = [label.text integerValue];
+//        label.text = [NSString stringWithFormat:@"%ld", (pastDOWN-1)];
+//        sender.enabled = NO;
+//    }];
+//    
+//    NSInteger pastDOWN = [label.text integerValue];
+//    label.text = [NSString stringWithFormat:@"%ld", (pastDOWN+1)];
+//    sender.enabled = NO;
+//}
 
 /*
 // Override to support conditional editing of the table view.

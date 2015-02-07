@@ -21,5 +21,7 @@
 @property NSArray *artists;
 @property NSArray *upvotes;
 @property NSArray *downvotes;
+@property NSArray *songIDs;
+@property NSInteger nowPlayingIndex;
 
 @end
