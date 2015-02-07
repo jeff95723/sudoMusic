@@ -44,7 +44,25 @@
 }
 
 - (void)saveButtonPressed {
-    NSLog(@"Im saving");
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://peterxia.com/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:self.selectedSong name:@"file"
+                                fileName:[NSString stringWithFormat:@"%@-%@.aac",self.artistname.text, self.songname.text]
+                                mimeType:@"audio/x-m4a"];
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"%@ %@", response, responseObject);
+        }
+    }];
+    
+    [uploadTask resume];
+    NSLog(@"Saving finished.");
 }
 
 
