@@ -17,6 +17,9 @@
 
 @interface SongQueueTableViewController : UITableViewController
 
-@property NSDictionary *playlist;
+@property NSArray *songs;
+@property NSArray *artists;
+@property NSArray *upvotes;
+@property NSArray *downvotes;
 
 @end

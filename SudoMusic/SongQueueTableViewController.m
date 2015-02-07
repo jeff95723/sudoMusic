@@ -143,7 +143,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    if (self.songs) {
+        return self.songs.count;
+    } else {
+        return 10;
+    }
 }
 
 
@@ -151,6 +155,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
+    
+    UILabel *songLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *artistLabel = (UILabel *)[cell viewWithTag:2];
+    
+    if (self.songs && self.artists && self.upvotes && self.downvotes) {
+        songLabel.text = [self.songs objectAtIndex:indexPath];
+        artistLabel.text = [self.artists objectAtIndex:indexPath];
+    } else {
+        songLabel.text = @"Song name: ";
+        artistLabel.text = @"Artist name: ";
+    }
     
     return cell;
 }
