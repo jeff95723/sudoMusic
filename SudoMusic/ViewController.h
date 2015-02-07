@@ -14,6 +14,8 @@
 
 @interface ViewController : UIViewController <MPMediaPickerControllerDelegate> {
     
+- (IBAction)scanAction:(id)sender;
+    
 }
 
 @end

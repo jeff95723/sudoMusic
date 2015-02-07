@@ -15,6 +15,9 @@
 		30C7EEFB1A85C1C1002C1417 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C7EEF91A85C1C1002C1417 /* LaunchScreen.xib */; };
 		30C7EF071A85C1C1002C1417 /* SudoMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C7EF061A85C1C1002C1417 /* SudoMusicTests.m */; };
 		30C7EF111A85C1F1002C1417 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C7EF101A85C1F1002C1417 /* AVFoundation.framework */; };
+		9E98197E1A85CBD900470A53 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9819781A85CBD900470A53 /* QRCameraSwitchButton.m */; };
+		9E98197F1A85CBD900470A53 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E98197B1A85CBD900470A53 /* QRCodeReaderView.m */; };
+		9E9819801A85CBD900470A53 /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E98197D1A85CBD900470A53 /* QRCodeReaderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,13 @@
 		30C7EF051A85C1C1002C1417 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30C7EF061A85C1C1002C1417 /* SudoMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SudoMusicTests.m; sourceTree = "<group>"; };
 		30C7EF101A85C1F1002C1417 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9E9819771A85CBD900470A53 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCameraSwitchButton.h; path = QRCodeReaderViewController/QRCameraSwitchButton.h; sourceTree = "<group>"; };
+		9E9819781A85CBD900470A53 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCameraSwitchButton.m; path = QRCodeReaderViewController/QRCameraSwitchButton.m; sourceTree = "<group>"; };
+		9E9819791A85CBD900470A53 /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderDelegate.h; path = QRCodeReaderViewController/QRCodeReaderDelegate.h; sourceTree = "<group>"; };
+		9E98197A1A85CBD900470A53 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderView.h; path = QRCodeReaderViewController/QRCodeReaderView.h; sourceTree = "<group>"; };
+		9E98197B1A85CBD900470A53 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderView.m; path = QRCodeReaderViewController/QRCodeReaderView.m; sourceTree = "<group>"; };
+		9E98197C1A85CBD900470A53 /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderViewController.h; path = QRCodeReaderViewController/QRCodeReaderViewController.h; sourceTree = "<group>"; };
+		9E98197D1A85CBD900470A53 /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderViewController.m; path = QRCodeReaderViewController/QRCodeReaderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,7 @@
 		30C7EEDE1A85C1C1002C1417 = {
 			isa = PBXGroup;
 			children = (
+				9E9819761A85CB4700470A53 /* QRCodeReaderViewController */,
 				30C7EF101A85C1F1002C1417 /* AVFoundation.framework */,
 				30C7EEE91A85C1C1002C1417 /* SudoMusic */,
 				30C7EF031A85C1C1002C1417 /* SudoMusicTests */,
@@ -121,6 +132,20 @@
 				30C7EF051A85C1C1002C1417 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E9819761A85CB4700470A53 /* QRCodeReaderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E9819771A85CBD900470A53 /* QRCameraSwitchButton.h */,
+				9E9819781A85CBD900470A53 /* QRCameraSwitchButton.m */,
+				9E9819791A85CBD900470A53 /* QRCodeReaderDelegate.h */,
+				9E98197A1A85CBD900470A53 /* QRCodeReaderView.h */,
+				9E98197B1A85CBD900470A53 /* QRCodeReaderView.m */,
+				9E98197C1A85CBD900470A53 /* QRCodeReaderViewController.h */,
+				9E98197D1A85CBD900470A53 /* QRCodeReaderViewController.m */,
+			);
+			name = QRCodeReaderViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,8 +249,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				30C7EEF31A85C1C1002C1417 /* ViewController.m in Sources */,
+				9E9819801A85CBD900470A53 /* QRCodeReaderViewController.m in Sources */,
 				30C7EEF01A85C1C1002C1417 /* AppDelegate.m in Sources */,
+				9E98197F1A85CBD900470A53 /* QRCodeReaderView.m in Sources */,
 				30C7EEED1A85C1C1002C1417 /* main.m in Sources */,
+				9E98197E1A85CBD900470A53 /* QRCameraSwitchButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +444,7 @@
 				30C7EF0C1A85C1C1002C1417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		30C7EF0D1A85C1C1002C1417 /* Build configuration list for PBXNativeTarget "SudoMusicTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +453,7 @@
 				30C7EF0F1A85C1C1002C1417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
