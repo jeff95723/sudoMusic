@@ -137,26 +137,39 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (self.songs) {
+        return self.songs.count;
+    } else {
+        return 10;
+    }
 }
 
 
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    UILabel *songLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *artistLabel = (UILabel *)[cell viewWithTag:2];
+    
+    if (self.songs && self.artists && self.upvotes && self.downvotes) {
+        songLabel.text = [self.songs objectAtIndex:indexPath];
+        artistLabel.text = [self.artists objectAtIndex:indexPath];
+    } else {
+        songLabel.text = @"Song name: ";
+        artistLabel.text = @"Artist name: ";
+    }
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
