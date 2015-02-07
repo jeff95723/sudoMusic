@@ -51,7 +51,6 @@
     NSLog(@"Artist: %@", artist);
     NSLog(@"NSURL: %@", songAsset.URL);
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
