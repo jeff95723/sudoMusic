@@ -13,6 +13,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
+#import "TSLibraryImport.h"
+
 
 
 @interface ViewController : UIViewController <MPMediaPickerControllerDelegate> {
