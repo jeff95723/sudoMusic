@@ -48,20 +48,31 @@
     [self presentViewController:reader animated:YES completion:NULL];
 }
 
+- (BOOL) validateURL: (NSString*) candidate {
+    NSURL *candidateURL = [NSURL URLWithString:candidate];
+    return (candidateURL && candidateURL.scheme && candidateURL.host);
+}
+
 #pragma mark - QRCodeReader Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
 {
-    /*
-    [self dismissViewControllerAnimated:YES completion:^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"QRCodeReader" message:result delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }];
-    */
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-    [self performSegueWithIdentifier:@"AfterScan" sender:self];
+    BOOL isValidURL = [self validateURL:result];
+    if (isValidURL) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:result parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self performSegueWithIdentifier:@"AfterScan" sender:self];
+            }];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    } else {
+        // Wrong code
+        NSLog(@"Error");
+    }
 }
 
 - (void)readerDidCancel:(QRCodeReaderViewController *)reader
