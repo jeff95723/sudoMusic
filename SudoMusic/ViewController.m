@@ -26,6 +26,7 @@
     self.saveButton.enabled = NO;
     self.songname.text = @"None.";
     self.artistname.text = @"None.";
+    [self.saveButton addTarget:self action:@selector(saveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)addMusicPressed:(id)sender {
@@ -40,6 +41,10 @@
     [self presentViewController:self.picker animated:YES completion:nil];
     
     NSLog(@"fuck you.");
+}
+
+- (void)saveButtonPressed {
+    NSLog(@"Im saving");
 }
 
 
