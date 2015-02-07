@@ -8,6 +8,7 @@
 
 #import "InitialViewController.h"
 #import "QRCodeReaderViewController.h"
+#import "SongQueueTableViewController.h"
 
 @interface InitialViewController () <QRCodeReaderDelegate> {
     
