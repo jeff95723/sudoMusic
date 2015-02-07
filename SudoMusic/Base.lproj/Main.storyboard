@@ -65,6 +65,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="saveButton" destination="IY9-DC-hxi" id="bg1-Dz-RYa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npu-Jg-ncf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
