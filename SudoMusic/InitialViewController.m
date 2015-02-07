@@ -36,7 +36,6 @@
         reader                        = [QRCodeReaderViewController new];
         reader.modalPresentationStyle = UIModalPresentationFormSheet;
     });
-    
     reader.delegate = self;
     
     [reader setCompletionWithBlock:^(NSString *resultAsString) {
