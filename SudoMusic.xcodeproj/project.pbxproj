@@ -252,6 +252,7 @@
 				TargetAttributes = {
 					30C7EEE61A85C1C1002C1417 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 3JB6CMHSLJ;
 					};
 					30C7EEFF1A85C1C1002C1417 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -469,9 +470,12 @@
 			baseConfigurationReference = 1D16056CFCD5D6016BAA94CD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SudoMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -480,9 +484,12 @@
 			baseConfigurationReference = E0385A80C7D4D9300909F5F8 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SudoMusic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -100,7 +100,7 @@
     if (!self.picker) {
         self.picker = [[MPMediaPickerController alloc]
                        initWithMediaTypes:MPMediaTypeMusic];
-        self.picker.prompt = NSLocalizedString(@"Fuck me", NULL);
+        self.picker.prompt = NSLocalizedString(@"Select song", NULL);
         self.picker.allowsPickingMultipleItems = NO;
         self.picker.delegate = self;
     }
